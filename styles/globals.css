@@ -3,25 +3,179 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #ff6b6b; /* Vibrant Red */
+  --primary-light: #ff8787;
+  --primary-dark: #e63946;
+  --secondary: #fca311; /* Vibrant Orange */
+  --accent: #00b4d8; /* Vibrant Blue */
+  --bg-light: #f1faee;
+  --bg-dark: #1d3557;
+  --text-light: #1d3557;
+  --text-dark: #f1faee;
+  --card-light: #ffffff;
+  --card-dark: #457b9d;
+  --border-light: #a8dadc;
+  --border-dark: #1d3557;
+  --success: #06d6a0;
+  --error: #ef476f;
+  --warning: #ffd166;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans antialiased transition-colors duration-300;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Light mode - default */
+body {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Dark mode */
+.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
+}
+
+/* Button components */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-sm;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-primary to-secondary text-white hover:shadow-md hover:opacity-90;
+}
+
+.btn-secondary {
+  @apply border-2 bg-transparent hover:bg-opacity-10;
+}
+
+body:not(.dark) .btn-secondary {
+  @apply border-primary/30 hover:border-primary/60 hover:bg-primary-light;
+}
+
+.dark .btn-secondary {
+  @apply border-white/30 hover:border-white/60 hover:bg-white/5;
+}
+
+/* Card component */
+.card {
+  @apply rounded-2xl shadow-lg transition-colors duration-300;
+}
+
+body:not(.dark) .card {
+  @apply bg-white hover:bg-primary-light/50;
+}
+
+.dark .card {
+  @apply bg-card-dark hover:bg-card-dark/80;
+}
+
+/* Form elements */
+.form-input {
+  @apply w-full p-3 rounded-lg border outline-none focus:ring-2 transition-all;
+}
+
+body:not(.dark) .form-input {
+  @apply bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary-light;
+}
+
+.dark .form-input {
+  @apply bg-gray-800 border-gray-700 focus:border-primary focus:ring-primary/20;
+}
+
+/* Section styling */
+.section {
+  @apply py-24;
+}
+
+body:not(.dark) .section-alt {
+  @apply bg-gray-50;
+}
+
+.dark .section-alt {
+  @apply bg-gray-900;
+}
+
+/* Container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Animations */
+@keyframes gradient-animation {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+/* Helper classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Enhanced Hover Effects */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Gradient Background */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background-size: 200% 200%;
+  animation: gradient-animation 15s ease infinite;
 }
