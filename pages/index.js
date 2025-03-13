@@ -298,7 +298,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-center">
                   <ReCAPTCHA
-                    sitekey="6LeGyvMqAAAAAK1L8rnnIVNmtLX0LngLCYTQnb7a"
+                    sitekey="6LeGyvMqAAAAAPzaduod7FLLNwdPNaMqHB0ib6YT"
                     onChange={setRecaptchaToken}
                     theme="dark"
                   />
